@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Volunteer Organization --></label>
+    <lookupFilter>
+        <errorMessage><!-- Account record type should be &quot;Volunteer Organization Account&quot; --></errorMessage>
+    </lookupFilter>
+    <name>Volunteer_Organization__c</name>
+    <relationshipLabel><!-- Volunteer Activities --></relationshipLabel>
+</CustomFieldTranslation>

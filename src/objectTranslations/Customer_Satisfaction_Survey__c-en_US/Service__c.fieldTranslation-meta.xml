@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Service --></label>
+    <name>Service__c</name>
+    <picklistValues>
+        <masterLabel>Friendly</masterLabel>
+        <translation><!-- Friendly --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>No opinion</masterLabel>
+        <translation><!-- No opinion --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Unfriendly</masterLabel>
+        <translation><!-- Unfriendly --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

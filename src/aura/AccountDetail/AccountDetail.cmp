@@ -1,0 +1,34 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+	
+    <aura:handler event="c:AccountSelect" action="{!c.onAccSelect}" />
+    <aura:attribute name="acc" type="Account" access="public"/>
+    <aura:attribute name="id" type="Id" access="public"/>
+    <aura:attribute name="recordError" type="String" access="public"/>
+    <aura:attribute name="showdata" type="Boolean" access="public" default="false"/>
+    
+    
+    <lightning:layout horizontalalign="center" verticalAlign="center">
+        <aura:renderIf isTrue="{!not(v.showdata)}">
+          	<lightning:layoutItem class="slds-align_absolute-center">
+            	<ui:outputText value="No Account Selected" />
+            </lightning:layoutItem>
+        </aura:renderIf>
+        
+        <aura:renderIf isTrue="{!v.showdata}">
+            <force:recordData aura:id="service" 
+                              recordId="{!v.id}" 
+                              fields="Id, Name, AccountNumber, OwnerId, AccountSource, ParentId, AnnualRevenue, Type, CreatedById, LastModifiedById, Industry, Description, Phone, Fax" 
+                              targetFields ="{!v.acc}" 
+                              targetError="{!v.recordError}" 
+                              mode="VIEW"/>
+        </aura:renderIf>
+        
+        <aura:if isTrue="{!not(empty(v.recordError))}">
+        <div class="recordError">
+            <ui:message title="Error" severity="error" closable="true">
+                {!v.recordError}
+            </ui:message>
+        </div>
+    </aura:if>
+    </lightning:layout>
+</aura:component>

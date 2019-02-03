@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Total Vol Hours for Shift --></label>
+    <name>Total_Vol_Hours_for_Shift__c</name>
+</CustomFieldTranslation>

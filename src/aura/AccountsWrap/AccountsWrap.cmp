@@ -1,0 +1,5 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <lightning:card title="Account List" class="slds-m-bottom_x-small">
+        <c:AccountsList aura:id="listcomp"/>
+	</lightning:card>
+</aura:component>

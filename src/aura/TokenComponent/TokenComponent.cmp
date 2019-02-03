@@ -1,0 +1,8 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+	<div class="myClass">
+        <p>hello i am your page first line</p>
+        <p>hello i am your page second line</p> 
+        <p>hello i am your page third line</p> 
+    </div>
+
+</aura:component>

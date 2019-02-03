@@ -1,0 +1,6 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    
+    <p>This is component 1...</p>
+    <br />
+    <lightning:button label="Go to Component 2" onclick="{!c.navigateToComp2}" />
+</aura:component>

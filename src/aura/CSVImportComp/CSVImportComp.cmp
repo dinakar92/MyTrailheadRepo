@@ -1,0 +1,76 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global">
+    <aura:attribute name= "data" type = "String[]" default = "[]" />
+    <aura:attribute name= "displayData" type = "Boolean" default = "false" />
+    <aura:attribute name= "errorData" type = "String[]" default = "[]" />
+    <aura:attribute name = "errorsFound" type = "Boolean" default = "false" />
+    
+    <div class="scroll" style="width:100%">
+        <div style="padding-right:5%">
+            <lightning:input type="file" label="" name="Mapping" multiple="false" accept=".csv" onchange="{!c.readCSV}" />
+        </div>
+        <br/>
+        <aura:If isTrue = "{!v.errorsFound}">
+        	<table class="myClass slds-table slds-table--bordered slds-table--cell-buffer">
+                <thead>
+                    <tr class="slds-text-heading--label">
+                        <th scope="col">
+                            <div class="slds-truncate" title="Invalid Data">Invalid Data</div>
+                        </th>
+                    </tr>
+                    <tr class="slds-text-heading--label">
+                        <th scope="col">
+                            <div class="slds-truncate" title="Student Name">Student Name</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate" title="Error Message">Error Message</div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <aura:iteration items="{!v.errorData}" var="row">
+                        <tr>
+                            <td>{!row.StudentName}</td>
+                            <td>{!row.Error}</td>
+                        </tr>
+                    </aura:iteration>
+                </tbody>
+            </table>
+            <br/>
+        </aura:If>
+        <aura:If isTrue = "{!v.displayData}">
+            <table class="myClass slds-table slds-table--bordered slds-table--cell-buffer">
+                <thead>
+                    <tr class="slds-text-heading--label" style = "background-color:green">
+                        <th scope="col">
+                            <div class="slds-truncate" title="Valid Data">Valid Data</div>
+                        </th>
+                    </tr>
+                    <tr class="slds-text-heading--label">
+                        <th scope="col">
+                            <div class="slds-truncate" title="Student No">Student Number</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate" title="Student Name">Student Name</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate" title="Date">Date</div>
+                        </th>
+                        <th scope="col">
+                            <div class="slds-truncate" title="Sports">Sports</div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <aura:iteration items="{!v.data}" var="row">
+                        <tr>
+                            <td>{!row.StudentNo}</td>
+                            <td>{!row.Name}</td>
+                            <td>{!row.Date}</td>
+                            <td>{!row.Sports}</td>
+                        </tr>
+                    </aura:iteration>
+                </tbody>
+            </table>
+    	</aura:If>
+    </div>
+</aura:component>

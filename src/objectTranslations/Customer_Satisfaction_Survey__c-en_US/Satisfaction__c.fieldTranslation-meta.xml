@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomFieldTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label><!-- Satisfaction --></label>
+    <name>Satisfaction__c</name>
+    <picklistValues>
+        <masterLabel>No opinion</masterLabel>
+        <translation><!-- No opinion --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Satisfied</masterLabel>
+        <translation><!-- Satisfied --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Somewhat satisfied</masterLabel>
+        <translation><!-- Somewhat satisfied --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Somewhat unsatisfied</masterLabel>
+        <translation><!-- Somewhat unsatisfied --></translation>
+    </picklistValues>
+    <picklistValues>
+        <masterLabel>Unsatisfied</masterLabel>
+        <translation><!-- Unsatisfied --></translation>
+    </picklistValues>
+</CustomFieldTranslation>

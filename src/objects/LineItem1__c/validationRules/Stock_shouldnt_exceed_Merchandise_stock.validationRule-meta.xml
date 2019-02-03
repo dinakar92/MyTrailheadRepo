@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Stock_shouldnt_exceed_Merchandise_stock</fullName>
+    <active>true</active>
+    <errorConditionFormula>LineItem_Stock__c  &gt;  Merchandise__r.Merchandise_Stock__c</errorConditionFormula>
+    <errorDisplayField>LineItem_Stock__c</errorDisplayField>
+    <errorMessage>Stock should not be more than Merchandise stock</errorMessage>
+</ValidationRule>

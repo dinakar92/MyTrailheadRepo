@@ -1,0 +1,37 @@
+<aura:component controller="StudentRegistrationFormClass" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+	    
+    <aura:attribute name="pageHeading" type="String" default="Student Registration Form" />
+    <aura:attribute name="xyz" type="String" default="false" />
+    <aura:attribute name="StudentName" type="String" default="" />
+    <aura:attribute name="FatherName" type="String" default="" />
+    <aura:attribute name="Course" type="String[]" default="Salesforce,JAVA,PHP,.NET" />
+    <aura:attribute name="CourseSelected" type="String" default="" />
+    <aura:attribute name="Mobile" type="Integer" default="" />
+    <aura:attribute name="Fee" type="Integer" default="" />
+    <aura:attribute name="Weekends" type="Boolean" default="" />
+    
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />  
+    <div class="slds-text-align_center slds-text-heading_large">
+    	{!v.pageHeading}
+    </div>
+    <br/><br/>
+    <div class = "slds-size_3-of-8">
+        <lightning:input name="sName" label="Enter Student Name:" value="{!v.StudentName}" />
+        <br/><br/>
+        <lightning:input name="fatherName" label="Enter Father Name:" value="{!v.FatherName}" />
+        <br/><br/>
+        <lightning:select name="select" label="Select a Course:" value="{!v.CourseSelected}">
+            <aura:iteration items="{!v.Course}" var="myItem">
+                <option value="{!myItem}" text = "{!myItem}"></option>
+            </aura:iteration>  
+        </lightning:select>
+        <br/><br/>
+        <lightning:input name="mobile" label="Enter Mobile Number:" type="Telephone" value="{!v.Mobile}" />
+            <br/><br/>
+        <lightning:input name="fee" label="Enter Student Fee:" value="{!v.Fee}" />
+            <br/><br/>
+        <lightning:input name="weekends" label="Available on Weekends?" type="checkbox" value="{!v.Weekends}" />
+            <br/><br/>
+        <lightning:button class="button" label="Submit" onclick="{!c.createStudent}" type="button"/>
+	</div>
+</aura:component>

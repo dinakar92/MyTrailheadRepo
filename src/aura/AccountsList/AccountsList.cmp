@@ -1,0 +1,142 @@
+<aura:component controller="FetchAccounts" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+	
+    <aura:handler name="init" action="{!c.doInit}" value="{!this}"/>
+    <aura:attribute name="accountsList" type="Account[]" default="[]"/>
+    <aura:handler event="force:showToast" action="{!c.refreshList}"/>
+    <aura:attribute name="isOpen" type="boolean" default="false"/>
+    <aura:attribute name="updateableAccounts" type="Account[]" default="[]"/>
+    <aura:attribute name="acc" type="Account" access="public"/>
+    <aura:attribute name="id" type="Id" access="public"/>
+    <aura:attribute name="recordError" type="String" access="public"/>
+    <aura:attribute name="showdata" type="Boolean" access="public" default="false"/>
+    
+    <!-- Buttons -->
+    <lightning:layout horizontalAlign="center">
+        <lightning:layoutItem class="slds-p-right_small">
+            <lightning:button class="slds-button slds-align_absolute-center" variant="brand" label="New" onclick="{!c.createNewAccount}" />
+        </lightning:layoutItem>
+        <lightning:layoutItem class="slds-p-right_small">
+            <lightning:button class="slds-button slds-align_absolute-center" variant="brand" label="Update Account Source" onclick="{!c.openModel}" />
+        </lightning:layoutItem>
+        <lightning:layoutItem>
+            <lightning:button class="slds-button slds-align_absolute-center" variant="brand" label="Delete" onclick="{!c.deleteAccounts}" />
+        </lightning:layoutItem>
+    </lightning:layout> 
+    <br/>
+    
+    <!-- Accounts List -->
+    <table class="myClass slds-table slds-table--bordered slds-table--cell-buffer">
+        <thead>
+            <tr class="slds-text-heading--label">
+                <th scope="col">
+                    <div class="slds-truncate" title="Select">Select</div>
+                </th>
+                <th scope="col">
+                    <div class="slds-truncate" title="Actions">Actions</div>
+                </th>
+                <th scope="col">
+                    <div class="slds-truncate" title="Account Name">Account Name</div>
+                </th>
+                <th scope="col">
+                    <div class="slds-truncate" title="Account Number">Account Number</div>
+                </th>
+                <th scope="col">
+                    <div class="slds-truncate" title="Account Owner">Account Owner</div>
+                </th>
+                <th scope="col">
+                    <div class="slds-truncate" title="Account Source">Account Source</div>
+                </th>
+                <th scope="col">
+                    <div class="slds-truncate" title="Account Revenue">Account Revenue</div>
+                </th>
+                <th scope="col">
+                    <div class="slds-truncate" title="Type">Type</div>
+                </th>
+                <th scope="col">
+                    <div class="slds-truncate" title="Industry">Industry</div>
+                </th>
+                <th scope="col">
+                    <div class="slds-truncate" title="Created By">Created By</div>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <aura:iteration items="{!v.accountsList}" var="row" indexVar="idx">
+                <tr>
+                    <td>
+                        <lightning:input checked="false" value="{!row}" type="checkbox" aura:id="AccSel" class="slds-p-vertical_small"/>
+                    </td>
+                    <td><a data-record="{!idx}" href="javascript:void(0)" onclick="{!c.editAccount}">Edit </a>|<a data-record="{!idx}" href="javascript:void(0)" onclick="{!c.deleteAccount}"> Del</a></td>
+                    <td>
+                        <a data-record="{!idx}" href="javascript:void(0)" onclick="{!c.getAccDetail}">{!row.Name}</a>
+                    </td>
+                    <td>{!row.AccountNumber}</td>
+                    <td>{!row.Owner.Name}</td>
+                    <td>{!row.AccountSource}</td>
+                    <td>{!row.AnnualRevenue}</td>
+                    <td>{!row.Type}</td>
+                    <td>{!row.Industry}</td>
+                    <td>{!row.CreatedBy.Name}</td>
+                </tr>
+            </aura:iteration>
+        </tbody>
+    </table>
+    
+    <!-- Mass Update Popup -->
+    <div class="slds-m-around_xx-large">
+        <aura:if isTrue="{!v.isOpen}"> 
+            <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+                <div class="slds-modal__container">
+                    <header class="slds-modal__header">
+                        <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Update Accounts</h2>
+                    </header>
+                    <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                        <lightning:layout>
+                        	<lightning:layoutItem size="6">
+                            	<aura:iteration items="{!v.updateableAccounts}" var="row" indexVar="idx">
+                                    <ui:outputText value="{!row.Name}"/><br/>
+                                </aura:iteration>
+                            </lightning:layoutItem>
+                            <br/>
+                            <lightning:layoutItem size="6">
+                                <br/>
+                            	<lightning:select name="select1" aura:id= "selectAccSrc" label="Account Source">
+                                    <option value="Web">Web</option>
+                                    <option value="Phone Inquiry">Phone Inquiry</option>
+                                    <option value="Partner Referral">Partner Referral</option>
+                                    <option value="Purchased List">Purchased List</option>
+                                    <option value="Other">Other</option>
+                                </lightning:select>
+                            </lightning:layoutItem>
+                        </lightning:layout>
+                    </div>
+                    <footer class="slds-modal__footer">
+                        <lightning:button variant="brand" 
+                                          label="Cancel"
+                                          onclick="{!c.closeModel}"/>
+                        <lightning:button variant="brand" 
+                                          label="Update"
+                                          onclick="{!c.updateAcc}"/>
+                    </footer>
+                </div>
+            </section>
+            <div class="slds-backdrop slds-backdrop_open"></div>
+        </aura:if>
+    </div>
+    
+    <!-- Accounts Detail -->
+    <lightning:layout class="slds-align_absolute-center">
+        <aura:renderIf isTrue="{!not(v.showdata)}">
+          	<lightning:layoutItem class="slds-align_absolute-center">
+            	<ui:outputText value="No Account Selected" />
+            </lightning:layoutItem>
+        </aura:renderIf>
+        
+        <aura:renderIf isTrue="{!v.showdata}">
+            <lightning:layoutItem class="slds-align_absolute-center">
+            	<force:recordView recordId="{!v.id}"/>
+        	</lightning:layoutItem>
+        </aura:renderIf>
+    </lightning:layout>
+    
+</aura:component>

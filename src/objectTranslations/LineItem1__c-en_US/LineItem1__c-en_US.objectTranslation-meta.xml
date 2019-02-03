@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObjectTranslation xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseValues>
+        <plural>false</plural>
+        <value>LineItem1</value>
+    </caseValues>
+    <caseValues>
+        <plural>true</plural>
+        <value>LineItems1</value>
+    </caseValues>
+    <startsWith>Consonant</startsWith>
+    <validationRules>
+        <errorMessage><!-- Stock should not be more than Merchandise stock --></errorMessage>
+        <name>Stock_shouldnt_exceed_Merchandise_stock</name>
+    </validationRules>
+</CustomObjectTranslation>

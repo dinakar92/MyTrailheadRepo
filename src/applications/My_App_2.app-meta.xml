@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomApplication xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>View</actionName>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>Invoice_1_detail_for_My_App_2</content>
+        <formFactor>Large</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
+        <pageOrSobjectType>Invoice1__c</pageOrSobjectType>
+    </actionOverrides>
+    <brand>
+        <headerColor>#FD0000</headerColor>
+        <shouldOverrideOrgTheme>false</shouldOverrideOrgTheme>
+    </brand>
+    <formFactors>Large</formFactors>
+    <isNavAutoTempTabsDisabled>false</isNavAutoTempTabsDisabled>
+    <isNavPersonalizationDisabled>false</isNavPersonalizationDisabled>
+    <label>My App 2</label>
+    <navType>Standard</navType>
+    <tabs>Merchandise1__c</tabs>
+    <tabs>Invoice1__c</tabs>
+    <tabs>Suggestion__c</tabs>
+    <tabs>Battle_Station__c</tabs>
+    <tabs>Resource__c</tabs>
+    <tabs>Supply__c</tabs>
+    <tabs>Volunteer_Activity__c</tabs>
+    <tabs>Volunteer_Job__c</tabs>
+    <tabs>Volunteer_Shift__c</tabs>
+    <tabs>Volunteer_Shift_Worker__c</tabs>
+    <tabs>Tower__c</tabs>
+    <uiType>Lightning</uiType>
+    <utilityBar>My_App_2_UtilityBar</utilityBar>
+</CustomApplication>
